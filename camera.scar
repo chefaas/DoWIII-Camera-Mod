@@ -1,0 +1,31 @@
+voidness_camera = {
+	orbit = Camera_GetOrbit(),
+	declination = Camera_GetDeclination()
+}
+
+function voidness_AdjustOrbit(value)
+	voidness_camera.orbit = voidness_camera.orbit + value
+	Camera_SetOrbit(voidness_camera.orbit)
+end
+
+function voidness_AdjustDeclination(value)
+	voidness_camera.declination = voidness_camera.declination + value
+	Camera_SetDeclination(voidness_camera.declination)
+end
+
+function bindShortCuts()
+
+	unbind([[alt+j]])
+	unbind([[alt+k]])
+	unbind([[alt+n]])
+	unbind([[alt+m]])
+
+	bind([[alt+j]], [[voidness_AdjustOrbit(0.1)]])
+	bind([[alt+k]], [[voidness_AdjustOrbit(-0.1)]])
+
+	bind([[alt+n]], [[voidness_AdjustDeclination(0.1)]])
+	bind([[alt+m]], [[voidness_AdjustDeclination(-0.1)]])
+end
+
+Camera_LoadEditorCamera()
+bindShortCuts()
